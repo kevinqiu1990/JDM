@@ -1,6 +1,6 @@
 function [betaW, Xs, Ys] = JDM(ker,Xs,Xt,Ys,Yt,sigma)
 
-% 初始化
+% init data
 X0s = Xs(find(Ys==0),:);
 X1s = Xs(find(Ys==1),:);
 Xs  = [X0s;X1s];
@@ -66,7 +66,7 @@ cvx_begin
 	minimize 0.5*quad_form(betaW,H) + kappa*betaW + ...
              0.5*quad_form(betaW(1:n0s,:),H0) + kappa0*betaW(1:n0s,:) + ...
              0.5*quad_form(betaW(n0s+1:n0s+n1s,:),H1) + kappa1*betaW(n0s+1:n0s+n1s,:)
-    subject to %约束条件
+    subject to %condition
         betaW >= 0;
         betaW <= 1000;
         A * betaW <= b;

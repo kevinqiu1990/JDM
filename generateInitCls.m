@@ -50,13 +50,11 @@ gravitation = gravitation./sum(gravitation);
 end
 
 function [filteredTrainX, filteredTrainY] = NNFilter(k, trainX, trainY, testX)
-%获取实例
+% get the size of test data
 testSize =size(testX,1);
 
-%distance行数等于trainX实例数，列数等于testX实例数
 [distance,index]=pdist2(trainX, testX, 'Euclidean', 'Smallest', k);
 
-%去index重复的
 finalIndex = [];
 filteredTrainX = [];
 filteredTrainY = [];
