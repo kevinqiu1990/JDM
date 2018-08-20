@@ -17,9 +17,10 @@ process_AUC_file_name = ['./output/process_AUC_result.csv'];
 process_AUC_file=fopen(process_AUC_file_name,'w');
 
 % Set parameter
-sigma = 0.1; % function width of gaussian kernel
+sigma = 0.1; % Function width of gaussian kernel
 initMethodId = 1; %1-TCA, 2-KMM, 3-DG, 4-NNFilter, 5-LR only
-percent = 1; % end condition of the pseudo-label refinment procedure
+percent = 1; % End condition of the pseudo-label refinment procedure. Here, 1 means 100%.
+max_iter = 20; % Max iteration of JDM process
 
 % Choose repository
 % use AEEEM
@@ -60,15 +61,15 @@ for i = 1:length(fileList)
             % call initMethod to generate init Cls
             [Cls, initMethod] = generateInitCls(initMethodId, sourceX, sourceY, targetX, targetY);
             [~,~,~,~,~,f_measure,~,~,AUC] = evaluate(Cls, targetY);
-            fprintf(process_f1_file,'%f,',f_measure);
-            fprintf(process_AUC_file,'%f,',AUC);
+            fprintf(process_f1_file,'%f,(init)',f_measure);
+            fprintf(process_AUC_file,'%f,(init)',AUC);
             
             % save the Cls into ClsArray to compare later
             ClsArray = [Cls];
             
-            for t = 2:20
+            for t = 2:max_iter
                 [betaW, Xs, Ys] = JDM('rbf',sourceX,targetX,sourceY,Cls,sigma);
-                betaW = normalizeAlpha(betaW, 1);  
+                betaW = normalizeAlpha(betaW, 1);
                 
                 model = train(betaW, Ys, sparse(Xs), '-s 0 -c 1');
                 Cls = predict(targetY, sparse(targetX), model);
@@ -78,10 +79,10 @@ for i = 1:length(fileList)
                 size_same = size(Cls(Cls==ClsArray(:,t-1)),1);
                 size_y = size(targetY,1);
                 currentPercent = size_same/size_y;
-                fprintf(process_f1_file,'%f,(%0.3f),',f_measure,currentPercent);
-                fprintf(process_AUC_file,'%f,(%0.3f),',AUC,currentPercent);
+                fprintf(process_f1_file,'%f,(%0.3f),',f_measure, currentPercent);
+                fprintf(process_AUC_file,'%f,(%0.3f),',AUC, currentPercent);
                 
-                % By comparing last iteration, if all pseudo-labels are not changes, break the loop 
+                % By comparing last iteration, if all pseudo-labels are not changes, break the loop
                 if currentPercent >= percent
                     break;
                 end
