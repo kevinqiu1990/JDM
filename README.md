@@ -1,22 +1,26 @@
-# JDM - 
-A joint distribution matching (JDM) model for distribution-adaptation-based cross-project defect prediction
+# JDM
+A joint distribution matching (JDM) model for distribution-adaptation-based cross-project defect prediction.
 
 JDM aims to minimize the joint distribution divergence between the source and target project to improve the CPDP performance. By constructing an adaptive weight vector for the instances of the source project, JDM can be effective and robust at reducing marginal distribution discrepancy and conditional distribution discrepancy simultaneously.
 
-Build the running environment based on the operating system
-===========
-1. Extract the version of liblinear-weight according to the operating system. The liblinear-weight packages are located under {JDMroot}/tools £¨support Windows, Linux and MacOS). Please ensure that only the proper one is unpacked.
-Liblinear is a simple package for solving large-scale regularized linear
-classification and regression. Liblinear-weight is a variant of liblinear that supports logical regression with instance weights.
+JDM.m is the implementation of JDM method.
 
-2. Download the CVX tool from http://cvxr.com/cvx/download/. Please download the corresponding version to the operating system and follow the setup operation of CVX README.txt.
-CVX is a Matlab-based modeling system for convex optimization. CVX turns Matlab into a modeling language, allowing constraints and objectives to be specified using standard Matlab expression syntax.
-Please note that under different operating systems, the results of CVX will be slightly different.
+Build running environment
+===========
+1. Extract the version of liblinear-weight according to the operating system (support Windows, Linux and MacOS). The liblinear-weight packages are located under {JDMroot}/tools/. Please ensure that only the proper one is unpacked.
+
+Liblinear is a simple package for solving large-scale regularized linear classification and regression. Liblinear-weight is a variant of liblinear that supports logical regression with instance weights.
+
+2. Download the CVX package into {JDMroot}/tools/ from http://cvxr.com/cvx/download/. Please download the corresponding version to the operating system and follow the setup (conduct cvs_setup command under rootpath of CVX) operation of CVX README.txt.
+
+CVX is a Matlab-based modeling system for convex optimization. CVX turns Matlab into a modeling language, allowing constraints and objectives to be specified using standard Matlab expression syntax. Please note that under different operating systems, the results of CVX will be slightly different.
 
 Demo
 ===========
 After building the running environment, please run demoJDM.m
 
+Contacts
+===========
 If any issues, please feel free to contact the Author. Thanks.
 Author Name: Kevin Qiu
 Author Email: qiushaojian@outlook.com
