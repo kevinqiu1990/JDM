@@ -5,22 +5,22 @@ JDM aims to minimize the joint distribution divergence between the source and ta
 
 JDM.m is the implementation of JDM method.
 
-Build running environment
-===========
-1. Extract the version of liblinear-weight according to the operating system (support Windows, Linux and MacOS). The liblinear-weight packages are located under {JDMroot}/tools/. Please ensure that only the proper one is unpacked.
+##Build running environment
+
+####1. Extract the version of **liblinear-weight** according to the operating system (support Windows, Linux and MacOS). The liblinear-weight packages are located under {JDMroot}/tools/. Please ensure that only the proper one is unpacked.
 
 Liblinear is a simple package for solving large-scale regularized linear classification and regression. Liblinear-weight is a variant of liblinear that supports logical regression with instance weights.
 
-2. Download the CVX package into {JDMroot}/tools/ from http://cvxr.com/cvx/download/. Please download the corresponding version to the operating system and follow the setup (conduct cvs_setup command under rootpath of CVX) operation of CVX README.txt.
+####2. Download the **CVX package** into {JDMroot}/tools/ from http://cvxr.com/cvx/download/. Please download the corresponding version to the operating system and follow the setup operation of CVX README.txt (Excuting cvs_setup command under rootpath of CVX).
 
 CVX is a Matlab-based modeling system for convex optimization. CVX turns Matlab into a modeling language, allowing constraints and objectives to be specified using standard Matlab expression syntax. Please note that under different operating systems, the results of CVX will be slightly different. The experimental environment of our paper is Windows 10, 64-bit, Intel Core 3.70 GHz server with 16GB RAM.
 
-Demo
-===========
-After building the running environment, please run demoJDM.m
+##Demo
+After running environment building, please run demoJDM.m
 
-Contacts
-===========
-If any issues, please feel free to contact the Author. Thanks.
-Author Name: Kevin Qiu
-Author Email: qiushaojian@outlook.com
+##Contacts
+If any issues, please feel free to contact the Author.
+
+**Author Name**: Kevin Qiu
+
+**Author Email**: qiushaojian@outlook.com
