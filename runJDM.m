@@ -17,21 +17,22 @@ process_AUC_file_name = ['./output/process_AUC_result.csv'];
 process_AUC_file=fopen(process_AUC_file_name,'w');
 
 % Set parameter
-sigma = 0.1
-initMethodId = 1 %1-TCA, 2-KMM, 3-DG, 4-NNFilter, 5-LR only
+sigma = 0.1; % function width of gaussian kernel
+initMethodId = 1; %1-TCA, 2-KMM, 3-DG, 4-NNFilter, 5-LR only
+percent = 1; % end condition of the pseudo-label refinment procedure
 
 % Choose repository
 % use AEEEM
 repositoryName = 'AEEEM';
 load ./data/AEEEM.mat
 fileList={'EQ','JDT','LC','ML', 'PDE'};
-attributeNum=61;
+attributeNum=61; % the projects in AEEEM own 61 attributes
 labelIndex=62;
 % use PROMISE
 % repositoryName = 'PROMISE';
 % load ./data/PROMISE.mat
 % fileList={'ant','arc','camel','elearning','ivy','prop','synapse','systemdata','tomcat','velocity'};
-% attributeNum=20;
+% attributeNum=20; % the projects in PROMISE own 20 attributes
 % labelIndex=21;
 
 
@@ -81,12 +82,15 @@ for i = 1:length(fileList)
                 fprintf(process_AUC_file,'%f,(%0.3f),',AUC,currentPercent);
                 
                 % By comparing last iteration, if all pseudo-labels are not changes, break the loop 
-                if currentPercent == 1
+                if currentPercent >= percent
                     break;
                 end
                 
                 ClsArray = [ClsArray,Cls];
             end
+            
+            fprintf(process_f1_file,'\n');
+            fprintf(process_AUC_file,'\n');
             
             %parameter string
             resultStr = [repositoryName,',',targetName,',',sourceName,',',num2str(f_measure),',',num2str(AUC)]
@@ -94,3 +98,8 @@ for i = 1:length(fileList)
         end
     end
 end
+
+% close files
+close(result_file_name);
+close(process_f1_file_name);
+close(process_AUC_file_name);
