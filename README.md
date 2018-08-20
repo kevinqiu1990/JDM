@@ -14,7 +14,7 @@ Liblinear is a simple package for solving large-scale regularized linear classif
 
 **2. Download the _CVX package_ into {JDMroot}/tools/ from http://cvxr.com/cvx/download/. Please download the corresponding version to the operating system and follow the setup operation of CVX README.txt (Excuting cvs_setup command under root path of CVX).**
 
-CVX is a Matlab-based modeling system for convex optimization. CVX turns Matlab into a modeling language, allowing constraints and objectives to be specified using standard Matlab expression syntax. Please note that under different operating systems, the results of CVX will be slightly different. The experimental environment of our paper is Windows 10, 64-bit, Intel Core 3.70 GHz server with 16GB RAM.
+CVX is a Matlab-based modeling system for convex optimization. CVX turns Matlab into a modeling language, allowing constraints and objectives to be specified using standard Matlab expression syntax. Please note that under different operating systems, the results of CVX may be slightly different. The experimental environment of our paper is Windows 10, 64-bit, Intel Core 3.70 GHz server with 16GB RAM.
 
 Demo
 =================
