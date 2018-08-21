@@ -45,6 +45,9 @@ for i = 1:length(fileList)
     targetData=eval(targetName);
     targetData(targetData(:,labelIndex)==-1,labelIndex)=0;
     targetX = targetData(:,1:attributeNum);
+    % If the optimization process is slow due to the large dimension,
+    % we can reduce the dimension by PCA first.
+    % targetX = fastPCA(targetX, 10);
     targetX = zscore(targetX);
     targetY = targetData(:,labelIndex);
     
@@ -55,6 +58,7 @@ for i = 1:length(fileList)
             sourceData=eval(sourceName);
             sourceData(sourceData(:,labelIndex)==-1,labelIndex)=0;
             sourceX = sourceData(:,1:attributeNum);
+            % sourceX = fastPCA(sourceX, 10);
             sourceX = zscore(sourceX);
             sourceY = sourceData(:,labelIndex);
             
