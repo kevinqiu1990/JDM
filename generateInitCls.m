@@ -9,7 +9,7 @@ if initMethodId == 1 % use TCA as the initial Pseudo-Label predictor
 elseif initMethodId == 2 % use KMM
     initMethod = 'KMM';
     betaW = KMM('rbf', sourceX, targetX, 0.01);
-    betaW = NormalizeAlpha(betaW, 1)
+    betaW = normalizeAlpha(betaW, 1);
     model = train(betaW, sourceY, sparse(sourceX), '-s 0 -c 1');
     Cls = predict(targetY, sparse(targetX), model);
 elseif initMethodId == 3 % use DG

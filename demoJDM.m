@@ -47,7 +47,7 @@ for i = 1:length(fileList)
     targetX = targetData(:,1:attributeNum);
     % If the optimization process is slow due to the large dimension,
     % we can reduce the dimension by PCA first.
-    % targetX = fastPCA(targetX, 10);
+    % targetX = fastPCA(targetX, 20);
     targetX = zscore(targetX);
     targetY = targetData(:,labelIndex);
     
@@ -58,15 +58,15 @@ for i = 1:length(fileList)
             sourceData=eval(sourceName);
             sourceData(sourceData(:,labelIndex)==-1,labelIndex)=0;
             sourceX = sourceData(:,1:attributeNum);
-            % sourceX = fastPCA(sourceX, 10);
+            % sourceX = fastPCA(sourceX, 20);
             sourceX = zscore(sourceX);
             sourceY = sourceData(:,labelIndex);
             
             % call initMethod to generate init Cls
             [Cls, initMethod] = generateInitCls(initMethodId, sourceX, sourceY, targetX, targetY);
             [~,~,~,~,~,f_measure,~,~,AUC] = evaluate(Cls, targetY);
-            fprintf(process_f1_file,'%f,(init)',f_measure);
-            fprintf(process_AUC_file,'%f,(init)',AUC);
+            fprintf(process_f1_file,'%f,(init),',f_measure);
+            fprintf(process_AUC_file,'%f,(init),',AUC);
             
             % save the Cls into ClsArray to compare later
             ClsArray = [Cls];
