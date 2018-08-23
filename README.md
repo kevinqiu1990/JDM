@@ -22,7 +22,7 @@ After running environment building, please run demoJDM.m
 
 Contacts
 =================
-If any issues, please feel free to contact the Author.
+If any issues, please feel free to contact the author.
 
 **Author Name**: Kevin Qiu
 
