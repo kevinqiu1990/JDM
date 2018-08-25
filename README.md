@@ -18,7 +18,7 @@ CVX is a Matlab-based modeling system for convex optimization. CVX turns Matlab 
 
 Demo
 =================
-After running environment building, please run demoJDM.m
+After environment building, please run demoJDM.m
 
 Contacts
 =================
